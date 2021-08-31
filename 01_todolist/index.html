@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todolist</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.4/tailwind.css"
+      integrity="sha512-8YCK1FvhqTJdbmZh/eC+Lr3Pa+ux1erhpRvNBa1+uw3zNUOj94jW4NrDh+JNeKrBLMVlyzkF+4OB/pgLogwKlg=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style/main.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="nav">
+        <div class="container">
+          <router-link to="/mytasks">My Tasks</router-link>
+          <router-link to="/inprogress">In Progress</router-link>
+          <router-link to="/completed">Completed</router-link>
+        </div>
+      </div>
+      <router-view></router-view>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"
+      integrity="sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.5.0/vue-router.js"
+      integrity="sha512-ItUtNlPfpWgQEwo0hSIQL5SMFrqqSwt1IKS218Yf65bO19gh4zx+nWRpU0Iw1A27UdgGbVHE5IauCEjqlLvoog=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const mytasks = {
+        template: "<div>123</div>",
+      };
+      const inprogress = {
+        template: "<div>456</div>",
+      };
+      const completed = {
+        template: "<div>789</div>",
+      };
+      const routes = [
+        { path: "/mytasks", component: mytasks },
+        { path: "/inprogress", component: inprogress },
+        { path: "/completed", component: completed },
+      ];
+      const router = new VueRouter({
+        routes,
+      });
+      new Vue({
+        router,
+        el: "#app",
+        data() {
+          return {
+            test: 123,
+          };
+        },
+      });
+    </script>
+  </body>
+</html>
