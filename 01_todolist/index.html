@@ -5,13 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>todolist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.4/tailwind.css"
-      integrity="sha512-8YCK1FvhqTJdbmZh/eC+Lr3Pa+ux1erhpRvNBa1+uw3zNUOj94jW4NrDh+JNeKrBLMVlyzkF+4OB/pgLogwKlg=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style/main.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+      integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style/main.css" />
   </head>
   <body>
     <div id="app">
@@ -23,6 +35,32 @@
         </div>
       </div>
       <router-view></router-view>
+      <div class="container">
+        <input type="text" placeholder="Add Task" />
+        <ul>
+          <li v-for="(item,index) in list">
+            <input type="checkbox" name="" id="" />
+            <div class="content">
+              <h3>{{item.title}}</h3>
+              <p>
+                <span><i class="far fa-calendar-alt"></i>
+</span>
+
+                <span><i class="far fa-sticky-note"></i></span
+                ><span><i class="far fa-comment-dots"></i></span>
+              </p>
+            </div>
+            <div class="note">
+              <div class="star">
+                <i class="fas fa-star"></i> <i class="far fa-star"></i>
+              </div>
+              <div class="edit">
+                <i class="fas fa-pencil-alt"></i>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"
@@ -36,13 +74,13 @@
     ></script>
     <script>
       const mytasks = {
-        template: "<div>123</div>",
+        template: "<div class='container'>123</div>",
       };
       const inprogress = {
-        template: "<div>456</div>",
+        template: "<div class='container'>456</div>",
       };
       const completed = {
-        template: "<div>789</div>",
+        template: "<div class='container'>789</div>",
       };
       const routes = [
         { path: "/mytasks", component: mytasks },
@@ -57,7 +95,17 @@
         el: "#app",
         data() {
           return {
-            test: 123,
+            list: [
+              {
+                id: 0,
+                title: "Type Something Here…",
+                time: "2021-05-06",
+                file: "",
+                msg: "123",
+                sart: false,
+                end: false,
+              },
+            ],
           };
         },
       });
