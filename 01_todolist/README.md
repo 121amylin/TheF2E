@@ -1,0 +1,2 @@
+- [vue 中使用 normalize.css 样式重置](https://www.huaweicloud.com/articles/7f96e875a78bfb5108043760458aaf5e.html)
+- [vue-fontawesome](https://ithelp.ithome.com.tw/articles/10209315)
