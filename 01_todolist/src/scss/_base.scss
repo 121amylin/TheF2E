@@ -10,15 +10,25 @@ $grey_dark: #757575;
 $light: #fff;
 $dark: #000;
 
-*{
-   box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 a {
   text-decoration: none;
+}
+#app {
+  font-family: "Roboto", sans-serif;
+  background-color: $grey_light;
+  min-height: 100vh;
+}
+.wrap {
+  padding: 24px 20px;
 }
 .container {
   width: 100%;
   max-width: 620px;
   margin: auto;
- 
+}
+.canclick{
+  cursor: pointer;
 }

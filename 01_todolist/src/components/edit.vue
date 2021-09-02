@@ -5,7 +5,7 @@
         <input class="check" type="checkbox" />
         <div class="edit_content">
           <h3>
-            <input class="msgtit" type="text" name="" id="" value="123" />
+            <input v-focus class="msgtit" type="text" name="" id="" :value="cpresivedTit" />
           </h3>
         </div>
         <div class="note">
@@ -45,6 +45,18 @@
     </div>
   </div>
 </template>
+<script>
+import Vue from 'vue'
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus()
+  }
+})
+
+export default {
+  props: ['cpresivedTit']
+}
+</script>
 <style lang="scss" scoped>
 @import '../scss/base';
 .container {
@@ -53,7 +65,6 @@
 
 .edit_component {
   border-radius: 5px;
-  padding-top: 16px;
 }
 .row {
   padding: 12px 72px 12px 100px;
