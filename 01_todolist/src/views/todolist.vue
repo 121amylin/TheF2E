@@ -56,7 +56,6 @@ export default {
       this.nowComonent = $event
     },
     revisedID ($event) {
-      console.log($event)
       this.resivedID = $event.ID
       this.resivedTit = $event.tit
     }

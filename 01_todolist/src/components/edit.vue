@@ -5,12 +5,19 @@
         <input class="check" type="checkbox" />
         <div class="edit_content">
           <h3>
-            <input v-focus class="msgtit" type="text" name="" id="" :value="cpresivedTit" />
+            <input
+              v-focus
+              class="msgtit"
+              type="text"
+              name="tit"
+              id="tit"
+              @input="tit_handle($event)"
+            />
           </h3>
         </div>
         <div class="note">
-          <div class="icon star">
-            <i v-if="true" class="fas fa-star"></i>
+          <div class="icon star" @click="toggleDefaultStar">
+            <i v-if="defaultStar" class="fas fa-star"></i>
             <i v-else class="far fa-star"></i>
           </div>
           <div class="icon edit">
@@ -24,23 +31,35 @@
       <div class="container">
         <div class="row">
           <div class="tit"><i class="far fa-calendar-alt"></i>Deadline</div>
-          <input type="date" name="start_time" id="start_time" />
-          <input type="date" name="end_time" id="end_time" />
+          <input
+            type="date"
+            name="end_time"
+            id="end_time"
+            @input="end_time_handle($event)"
+          />
         </div>
         <div class="row">
           <div class="tit"><i class="far fa-sticky-note"></i>File</div>
-          <input type="file" name="" id="" />
+          <input type="file" name="" id="" @input="file_url_handle($event)" />
         </div>
         <div class="row">
           <div class="tit"><i class="far fa-comment-dots"></i>Comment</div>
-          <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+          <textarea
+            name="comment"
+            id="comment"
+            cols="30"
+            rows="10"
+            @input="msg_text_handle($event)"
+          ></textarea>
         </div>
       </div>
     </div>
     <div class=" fillrow">
       <div class="container">
         <a class="btn cancelbtn" href="javascript:;"><span>+</span>Cancel</a>
-        <a class="btn addbtn" href="javascript:;"><span>+</span>Add Task</a>
+        <a class="btn addbtn" href="javascript:;" @click="revisedList"
+          ><span>+</span>Add Task</a
+        >
       </div>
     </div>
   </div>
@@ -54,7 +73,48 @@ Vue.directive('focus', {
 })
 
 export default {
-  props: ['cpresivedTit']
+  props: [],
+  data () {
+    return {
+      defaultStar: false,
+      tit: '',
+      end_time: '',
+      file_url: '',
+      msg_text: ''
+    }
+  },
+  methods: {
+    toggleDefaultStar () {
+      this.defaultStar = !this.defaultStar
+    },
+    tit_handle ($event) {
+      this.tit = event.currentTarget.value
+    },
+    end_time_handle ($event) {
+      this.end_time = event.currentTarget.value
+    },
+    file_url_handle ($event) {
+      this.file_url = event.currentTarget.value
+    },
+    msg_text_handle ($event) {
+      this.msg_text = event.currentTarget.value
+    },
+
+    revisedList () {
+      const obj = {
+        id: new Date().getTime(),
+        title: this.tit,
+        endtime: this.end_time,
+        file: this.file_url,
+        msg: this.msg_text,
+        star: this.defaultStar,
+        complete: false
+      }
+      this.$store.commit('change_temObj', obj)
+      this.$store.commit('add_list')
+      this.$store.commit('toggle_isEdit', false)
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

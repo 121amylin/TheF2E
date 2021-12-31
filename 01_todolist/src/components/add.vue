@@ -18,12 +18,17 @@ export default {
   components: { edit },
   data () {
     return {
-      notaddItem: true
+      addInput: ''
+    }
+  },
+  computed: {
+    notaddItem () {
+      return !this.$store.state.isEdit
     }
   },
   methods: {
     editing () {
-      this.notaddItem = false
+      this.$store.commit('toggle_isEdit', true)
     }
   }
 }

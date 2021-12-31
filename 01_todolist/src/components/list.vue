@@ -3,7 +3,12 @@
     <ul class="list">
       <li v-for="item in pdate" :key="item.id">
         <div v-if="item.id !== presivedID" class="main">
-          <input class="check" type="checkbox" />
+          <input
+            class="check"
+            type="checkbox"
+            :checked="item.complete"
+            @click="chechHandle(item.id)"
+          />
           <div class="content">
             <h3 :class="{ complete_del: item.complete }">{{ item.title }}</h3>
             <p class="into">
@@ -11,14 +16,21 @@
                 ><i class="far fa-calendar-alt"></i
                 ><span class="item">{{ item.endtime }}</span></span
               >
-
-              <span v-if="item.file"><i class="far fa-sticky-note"></i></span
-              ><span v-if="item.msg"><i class="far fa-comment-dots"></i></span>
+              <br />
+              <span v-if="item.file"
+                ><i class="far fa-sticky-note"></i
+                ><span class="item">{{ item.file }}</span></span
+              >
+              <br />
+              <span v-if="item.msg"
+                ><i class="far fa-comment-dots"> </i
+                ><span class="item">{{ item.msg }}</span></span
+              >
             </p>
           </div>
           <div class="note">
-            <div class="icon star">
-              <i v-if="item.sart" class="fas fa-star"></i>
+            <div class="icon star" @click="starHandle(item.id)">
+              <i v-if="item.star" class="fas fa-star"></i>
               <i v-else class="far fa-star canclick"></i>
             </div>
             <div
@@ -29,7 +41,7 @@
             </div>
           </div>
         </div>
-        <edit v-else :cpresivedTit="presivedTit"></edit>
+        <edit v-else></edit>
       </li>
     </ul>
   </div>
@@ -38,7 +50,7 @@
 import edit from '@/components/edit.vue'
 
 export default {
-  props: ['pdate', 'presivedID', 'presivedTit'],
+  props: ['pdate', 'presivedID', 'paddValue'],
   components: { edit },
   data () {
     return {}
@@ -46,6 +58,13 @@ export default {
   methods: {
     editHandle (value) {
       this.$emit('peditHandle', value)
+    },
+    chechHandle (id) {
+      this.$store.commit('complete_item', id)
+    },
+    starHandle (id) {
+      console.log(id)
+      this.$store.commit('star_item', id)
     }
   }
 }

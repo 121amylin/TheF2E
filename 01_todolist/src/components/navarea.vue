@@ -14,7 +14,6 @@ export default {
   name: 'navarea',
   methods: {
     deliverClassHanhle (cls) {
-      console.log(cls)
       this.$emit('pdeliverClassHanhle', cls)
     }
   }
